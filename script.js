@@ -33,6 +33,17 @@ function checkWin() {
     for (const combination of winningCombinations) {
         const[a, b, c] = combination;
 
-        if 
+        if (
+            cells[a].classList.contain(currentPlayer) && cells[b].classList.contains(currentPlayer) && cells[c].classList.contains(currentPlayer)
+        ) {
+            message.textContent = `Player ${currentPlayer} wins!`;
+            isGameActive = false;
+        }
+    }
+}
+
+function checkDraw() {
+    if ([...cells].every((cell) => cell.classList.contains('X') || cell.classList.contains('0'))) {
+        
     }
 }
