@@ -5,6 +5,17 @@ const restartButton = document.getElementById('restart-button');
 let currentPlayer = 'X';
 let isGameActive = true;
 
+const winningCombinations = [
+    [0,1,2],
+    [3,4,5],
+    [6,7,8],
+    [0,3,6],
+    [1,4,7],
+    [2,5,8],
+    [0,4,8],
+    [2,4,6]
+];
+
 cells.forEach((cell) => {
     cell.addEventListener('click', handleCellClick);
 });
@@ -26,7 +37,7 @@ function handleCellClick(e) {
 }
 
 function isCellOccupied(cell) {
-    return cell.classList.contains.('X') || cell.classList.contains('0');
+    return cell.classList.contains('X') || cell.classList.contains('0');
 }
 
 function checkWin() {
@@ -44,6 +55,17 @@ function checkWin() {
 
 function checkDraw() {
     if ([...cells].every((cell) => cell.classList.contains('X') || cell.classList.contains('0'))) {
-        
+        message.textContent = 'It\'s a draw!';
+        isGameActive = false;
     }
+}
+
+function restartGame() {
+    cells.forEach((cell) => {
+        cell.textContent = '';
+        cell.classList.remove('X', '0');
+    });
+    currentPlayer = 'X';
+    message.textContent = 'Player X\'s Turn';
+    isGameActive = true;
 }
